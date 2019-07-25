@@ -20,8 +20,7 @@ export default new Vuex.Store({
     },
     [SET_TAKEN] (state, payload) {
       const index = state.packages.findIndex(x => x.id === payload.id)
-      Vue.set(state.items, index, payload)
-      state.level = payload
+      Vue.set(state.packages, index, payload)
     }
   },
   actions: {
@@ -37,7 +36,7 @@ export default new Vuex.Store({
     },
     [SET_TAKEN] ({ commit, state }, payload) {
       let newItem = state.packages.filter(x => x.id === payload.id)[0]
-      newItem.status = 'taken'
+      newItem.status = payload.status.status
       axios
         .put('http://localhost:8080/packages/' + payload.id, payload.status)
         .then(() => commit(SET_TAKEN, newItem))

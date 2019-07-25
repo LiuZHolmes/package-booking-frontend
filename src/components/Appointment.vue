@@ -3,7 +3,7 @@
     <h1>预约取件</h1>
     <el-form label-width="80px">
       <el-form-item label="运单号">
-        <el-input></el-input>
+        <el-input type="number" v-model="id"></el-input>
       </el-form-item>
       <el-form-item label="取件时间">
         <el-col :span="11">
@@ -27,6 +27,11 @@ export default {
   name: 'Appointment',
   props: {
     msg: String
+  },
+  data () {
+    return {
+      id: ''
+    }
   },
   components: {}
 }

@@ -7,6 +7,7 @@
       <el-button @click="setLevel('no_appointment')" round>未预约</el-button>
     </el-row>
     <el-button @click='toCreate' circle>+添加</el-button>
+    <el-button @click='toAppointment' circle>预约</el-button>
   </div>
 </template>
 
@@ -23,6 +24,9 @@ export default {
     },
     toCreate () {
       this.$router.push('create')
+    },
+    toAppointment () {
+      this.$router.push('appointment')
     }
   }
 }

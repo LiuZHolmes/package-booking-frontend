@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <span>菜鸟驿站</span>
+      <h1>菜鸟驿站</h1>
       <FilterButton/>
       <PackageTable/>
   </div>

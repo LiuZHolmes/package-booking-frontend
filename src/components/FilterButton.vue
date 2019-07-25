@@ -5,9 +5,9 @@
       <el-button @click="setLevel('already_appointment')" round>已预约</el-button>
       <el-button @click="setLevel('taken')" round>已取件</el-button>
       <el-button @click="setLevel('no_appointment')" round>未预约</el-button>
+      <el-button type="primary" @click='toCreate' circle>+添加</el-button>
+      <el-button type="primary" @click='toAppointment' circle>预约</el-button>
     </el-row>
-    <el-button @click='toCreate' circle>+添加</el-button>
-    <el-button @click='toAppointment' circle>预约</el-button>
   </div>
 </template>
 
@@ -33,4 +33,8 @@ export default {
 </script>
 
 <style scoped>
+div {
+  margin: 10px;
+  text-align: right;
+}
 </style>

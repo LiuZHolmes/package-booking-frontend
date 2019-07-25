@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>包裹入库</span>
+    <h1>包裹入库</h1>
     <el-form label-width="80px">
       <el-form-item label="运单号">
         <el-input></el-input>

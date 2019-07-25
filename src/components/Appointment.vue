@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>预约取件</span>
+    <h1>预约取件</h1>
     <el-form label-width="80px">
       <el-form-item label="运单号">
         <el-input></el-input>

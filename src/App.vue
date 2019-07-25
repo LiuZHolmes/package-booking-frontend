@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { GET_PACKAGES } from './const-type'
 import Main from './components/Main'
 export default {
   name: 'APP',
@@ -13,6 +14,9 @@ export default {
   },
   components: {
     Main
+  },
+  created () {
+    this.$store.dispatch(GET_PACKAGES)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { GET_PACKAGES, SET_LEVEL } from './const-type'
+import { GET_PACKAGES, SET_LEVEL, SET_TAKEN } from './const-type'
 Vue.use(Vuex)
 
 const axios = require('axios')
@@ -17,6 +17,11 @@ export default new Vuex.Store({
     },
     [SET_LEVEL] (state, payload) {
       state.level = payload
+    },
+    [SET_TAKEN] (state, payload) {
+      const index = state.packages.findIndex(x => x.id === payload.id)
+      Vue.set(state.items, index, payload)
+      state.level = payload
     }
   },
   actions: {
@@ -26,6 +31,16 @@ export default new Vuex.Store({
         .then(res => {
           context.commit(GET_PACKAGES, res.data)
         })
+        .catch(error => {
+          alert(error)
+        })
+    },
+    [SET_TAKEN] ({ commit, state }, payload) {
+      let newItem = state.packages.filter(x => x.id === payload.id)[0]
+      newItem.status = 'taken'
+      axios
+        .put('http://localhost:8080/packages/' + payload.id, payload.status)
+        .then(() => commit(SET_TAKEN, newItem))
         .catch(error => {
           alert(error)
         })

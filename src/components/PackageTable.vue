@@ -8,7 +8,7 @@
       <el-table-column prop="appointment_time" label="预约时间"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small">确认收货</el-button>
+          <el-button @click="setTaken(scope.row)" type="text" size="small">确认收货</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -16,10 +16,22 @@
 </template>
 
 <script>
+import { SET_TAKEN } from '../const-type'
 export default {
   name: 'PackageTable',
   props: {
     msg: String
+  },
+  methods: {
+    setTaken (row) {
+      let payload = {
+        id: row.id,
+        status: {
+          status: 'taken'
+        }
+      }
+      this.$store.dispatch(SET_TAKEN, payload)
+    }
   },
   computed: {
     tableData () {

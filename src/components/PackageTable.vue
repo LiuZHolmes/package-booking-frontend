@@ -8,7 +8,7 @@
       <el-table-column prop="appointment_time" label="预约时间"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="setTaken(scope.row)" type="text" size="small">确认收货</el-button>
+          <el-button v-show="isButtonShow(scope.row)" @click="setTaken(scope.row)" type="text" size="small">确认收货</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -31,6 +31,9 @@ export default {
         }
       }
       this.$store.dispatch(SET_TAKEN, payload)
+    },
+    isButtonShow (row) {
+      return row.status !== '已取件'
     }
   },
   computed: {

@@ -47,10 +47,31 @@ export default new Vuex.Store({
   },
   getters: {
     filterPackages: state => {
+      let packages
       if (state.level === 'all') {
-        return state.packages
+        packages = state.packages
+      } else packages = state.packages.filter(x => x.status === state.level)
+      const toDisplayTime = (time) => {
+        const date = new Date()
+        date.setTime(time)
+        return date.toString()
       }
-      return state.packages.filter(x => x.status === state.level)
+      const toDisplayStatus = (status) => {
+        if (status === 'no_appointment') {
+          return '未预约'
+        } else if (status === 'already_appointment') {
+          return '已预约'
+        } else if (status === 'taken') {
+          return '已取件'
+        } else return '状态错误'
+      }
+      return packages.map(x => ({
+        id: x.id,
+        receiver: x.receiver,
+        phoneNumber: x.phoneNumber,
+        status: toDisplayStatus(x.status),
+        appointment_time: toDisplayTime(x.appointment_time)
+      }))
     }
   }
 })

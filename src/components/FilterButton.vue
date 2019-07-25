@@ -6,7 +6,7 @@
       <el-button @click="setLevel('taken')" round>已取件</el-button>
       <el-button @click="setLevel('no_appointment')" round>未预约</el-button>
     </el-row>
-    <el-button circle>+添加</el-button>
+    <el-button @click='toCreate' circle>+添加</el-button>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
   methods: {
     setLevel (level) {
       this.$store.commit(SET_LEVEL, level)
+    },
+    toCreate () {
+      this.$router.push('create')
     }
   }
 }

@@ -11,12 +11,10 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'main',
       component: Main
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/create',
       component: CreatePackage
     }
   ]

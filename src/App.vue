@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <Main/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import { GET_PACKAGES } from './const-type'
-import Main from './components/Main'
 export default {
   name: 'APP',
   props: {
     msg: String
   },
   components: {
-    Main
   },
   created () {
     this.$store.dispatch(GET_PACKAGES)

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { GET_PACKAGES, SET_LEVEL, SET_TAKEN } from './const-type'
+import { GET_PACKAGES, SET_LEVEL, SET_TAKEN, DO_APPOINTMENT } from './const-type'
 Vue.use(Vuex)
 
 const axios = require('axios')
@@ -37,6 +37,17 @@ export default new Vuex.Store({
     [SET_TAKEN] ({ commit, state }, payload) {
       let newItem = state.packages.filter(x => x.id === payload.id)[0]
       newItem.status = payload.status.status
+      axios
+        .put('http://localhost:8080/packages/' + payload.id, payload.status)
+        .then(() => commit(SET_TAKEN, newItem))
+        .catch(error => {
+          alert(error)
+        })
+    },
+    [DO_APPOINTMENT] ({ commit, state }, payload) {
+      let newItem = state.packages.filter(x => x.id === payload.id)[0]
+      newItem.status = payload.data.status
+      // convert time
       axios
         .put('http://localhost:8080/packages/' + payload.id, payload.status)
         .then(() => commit(SET_TAKEN, newItem))

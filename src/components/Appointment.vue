@@ -11,11 +11,11 @@
         </el-col>
         <el-col class="line" :span="2">-</el-col>
         <el-col :span="11">
-          <el-time-picker placeholder="选择时间" style="width: 100%;"></el-time-picker>
+          <el-time-picker placeholder="选择时间" style="width: 100%;" v-model="time"></el-time-picker>
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">预约</el-button>
+        <el-button type="primary" @click="doAppointment">预约</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
@@ -30,7 +30,19 @@ export default {
   },
   data () {
     return {
-      id: ''
+      id: '',
+      time: ''
+    }
+  },
+  methods: {
+    doAppointment () {
+      const payload = {
+        id: this.id,
+        data: {
+          status: 'already_appointment',
+          time: this.time
+        }
+      }
     }
   },
   components: {}
